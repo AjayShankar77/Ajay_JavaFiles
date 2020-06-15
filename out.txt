@@ -1,0 +1,2 @@
+This goes to out.txt
+Do u want to do another operation??...yes/no

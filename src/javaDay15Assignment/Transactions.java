@@ -3,10 +3,8 @@ package javaDay15Assignment;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.time.format.DateTimeFormatter;
-import java.awt.Component;
 import java.time.LocalDate;
 import java.time.Period;
-import javax.swing.*;
 import java.io.*;
 
 public class Transactions {
@@ -26,8 +24,7 @@ public class Transactions {
 		System.out.println("Please select the banking operation you want \r\n" + 
 					"1) Transaction \r\n" + 
 					"2) Print Account Details \r\n" + 
-					"3) Show Balance \r\n" +
-					"4) Save Account Details");
+					"3) Show Balance");
 		
 		userChoice = scanner.nextInt();
 		scanner.nextLine();
@@ -73,13 +70,13 @@ public class Transactions {
 				case 3 : 
 						System.out.println("The available balance is "+accObject.checkBalance());	
 						break;
-				case 4 :
+				/*case 4 :
 				try {
 					saveFile();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-						break;
+						break;*/
 			}
 			System.out.println("Do u want to do another operation??...yes/no");
 			 addChoice = scanner.nextLine();
@@ -117,10 +114,9 @@ int ageCalculation (String dob) {
 		}
 		System.out.println("Account does not exist");
 		return null;
-		
 	}
 	
-	void saveFile() throws IOException {
+	/*void saveFile() throws IOException {
 		JFileChooser fileChooser = new JFileChooser();
 		Component modalToComponent = null;		
 		if (fileChooser.showSaveDialog(modalToComponent) == JFileChooser.APPROVE_OPTION) {
@@ -130,12 +126,9 @@ int ageCalculation (String dob) {
 		  System.setOut(printStream);
 
 		}
-	}
+	}*/
 	public static void main(String[] a) throws IOException {
 		Account sObj = new SavingsAccount();
 		sObj.takeAccountDetails();
-		Transactions transactions = new Transactions();
-		transactions.saveFile();
-
 	}
 }

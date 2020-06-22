@@ -56,7 +56,7 @@ public class ExceptionExample {
 		
 	}
 	
-	void checkVoteEligibility() {
+	void checkVoteEligibility() throws MyAgeException{
 		int age = 12;
 		try {
 			 if(age<18)
@@ -75,7 +75,12 @@ public class ExceptionExample {
 		/*ee.addDataToMap();
 		ee.printMap();
 		ee.fileRead();*/
-		ee.checkVoteEligibility();
+		try {
+			ee.checkVoteEligibility();
+		} catch (MyAgeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

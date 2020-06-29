@@ -1,5 +1,4 @@
 package javaDay19Work;
-import java.lang.Object;
 
 public class InterThreadExample {
 

@@ -48,11 +48,17 @@ public class Bank {
 		}
 	}
 	
+	void doTransactions() {
+		Transaction transaction = new Transaction();
+		transaction.transact();
+	}
+	
 	void printMenu() {
 		addAccounts();
 		addTransactions();
 		printAccounts();
 		printTransaction();
+		doTransactions();
 	}
 
 	public static void main(String[] args) {

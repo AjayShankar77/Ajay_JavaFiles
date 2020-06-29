@@ -65,7 +65,7 @@ public class Account implements Comparable<Account> {
 
 	@Override
 	public String toString() {
-		String data = "Account Number: \n\r"+accountNumber.replaceAll("\\d(?=\\d{2})", "*")+"Password: "+password.replaceAll("^[a-zA-Z0-9_]$", "****")+"Customer Name: \n\r"+customerName+"Phone Number: "+phone;
+		String data = "\nAccount Number: "+accountNumber.replaceFirst("(\\d{2})(\\d{6})(\\d+)", "$1******$3")+"\nPassword: "+password.replaceAll(".", "*")+"\nCustomer Name: "+customerName+"\nPhone Number: "+phone;
 		return data;
 	}
 	
@@ -94,15 +94,20 @@ public class Account implements Comparable<Account> {
 		customerName = scanner.nextLine();
 		System.out.println("Enter the Customer Phone");
 		phone = scanner.nextLine();
-		System.out.println("Enter the balance");
+		System.out.println("Enter the amount to be deposit");
 		balance = scanner.nextDouble();
 		
+	}
+	
+	public void printAccountDetails() {
+		System.out.println("\nAccount Number: "+accountNumber.replaceFirst("(\\d{2})(\\d{6})(\\d+)", "$1******$3")+"\nCustomer Name: "+customerName+"\nPassword: "+password.replaceAll(".", "*")+"\nCustomer Phone: "+phone+"\nBalance in Account: "+balance);
 	}
 	
 	public static void main(String[] args) {
 		
 		Account account = new Account();
 		account.getAccountDetailsFromUser();
+		account.printAccountDetails();
 
 	}
 

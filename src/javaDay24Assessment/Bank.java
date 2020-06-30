@@ -6,15 +6,14 @@ public class Bank {
 	ArrayList<Transaction> transactions;
 	Scanner scanner;
 	
-	Bank() {
+	public Bank() {
 		scanner = new Scanner(System.in);
 		accounts = new ArrayList<Account>();
 		transactions = new ArrayList<Transaction>();
 	}
 	
-	void addAccounts() {
+	public void addAccounts(Account account) {
 		String choice = "No";
-		Account account;
 		do {
 			account = new Account();
 			account.getAccountDetailsFromUser();
@@ -24,9 +23,8 @@ public class Bank {
 		}while(choice.toUpperCase().equals("YES"));
 	}
 	
-	void addTransactions() {
+	public void addTransactions(Transaction transaction) {
 		String choice = "No";
-		Transaction transaction;
 		do {
 			transaction = new Transaction();
 			transaction.transact();
@@ -36,26 +34,26 @@ public class Bank {
 		}while(choice.toUpperCase().equals("YES"));
 	}
 	
-	void printAccounts() {
+	public void printAccounts() {
 		for(Account account : accounts) {
 			System.out.println(account);
 		}
 	}
 	
-	void printTransaction() {
+	public void printTransaction() {
 		for(Transaction transaction : transactions) {
 			System.out.println(transaction);
 		}
 	}
 	
-	void doTransactions() {
+	public void doTransactions() {
 		Transaction transaction = new Transaction();
 		transaction.transact();
 	}
 	
-	void printMenu() {
-		addAccounts();
-		addTransactions();
+	public void printMenu() {
+		printAccounts();
+		doTransactions();
 		printAccounts();
 		printTransaction();
 		doTransactions();

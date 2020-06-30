@@ -1,29 +1,41 @@
 package javaDay24Assessment;
-import java.util.Scanner;
+import java.util.*;
 
 public class Transaction {
 	
 	int transactNumber;
-	Account fromAccount, toAccount;
+	Account fromAccount;
+	Account toAccount;
 	String type, status;
-	double balance, amount;
+	double amount;
+	ArrayList<Account> accountList;
 	Scanner scanner;
 	
 	Transaction() {
-		
+		scanner = new Scanner(System.in);
+		accountList = new ArrayList<Account>();
+	}
+	
+	void addAccount() {
+		String choice = "No";
+		Account account;
+		do {
+			account = new Account();
+			account.getAccountDetailsFromUser();
+			accountList.add(account);
+			System.out.println("Do you want to add another account ??");
+			choice = scanner.nextLine();
+		}while (choice.toUpperCase().equals("YES"));
 	}
 	
 	@Override
 	public String toString() {
-		String transactionData = "Transaction Number: \n\r"+transactNumber+"From Account: \n\r"+fromAccount+"To Account: "+toAccount;
+		String transactionData = "\nTransaction Number: "+transactNumber+"\nFrom Account: "+fromAccount.getAccountNumber()+"\nTo Account: "+toAccount.getAccountNumber();
 		return transactionData;
 	}
 	
 	public void transact() {
-		scanner = new Scanner(System.in);
-		System.out.println("Enter the Account Number");
-		transactNumber = scanner.nextInt();
-		scanner.nextLine();
+		addAccount();
 		int menu;
 		System.out.println("Menu");
 		System.out.println("1. Cash deposit");
@@ -48,37 +60,36 @@ public class Transaction {
 		}while (!quit);
 	}
 		
-	public double cashDeposit()	{
+	public double cashDeposit()	{	
 		System.out.print("Enter amount to deposit:");
-		balance = scanner.nextDouble();
+		amount = scanner.nextDouble();
 		scanner.nextLine();
 		System.out.println("Enter To Account Number to be deposit :");
-		toAccount.getAccountNumber();
-		if (balance < 0) {
+		if ( amount < 0) {
 			System.out.println("Invalid Amount");
 			return 1;
 		}
-		balance = balance + amount;
-		 System.out.println("deposit status");
+		amount = fromAccount.getBalance() + amount;
+		 System.out.println("Deposit status:");
 			System.out.println("Your Money has been successfully depsited");
 		return 0;
 
 	}
 		public double onlineTransfer()	{
 			System.out.print("Enter amount to deposit:");
-			balance = scanner.nextInt();
+			amount = scanner.nextDouble();
 			scanner.nextLine();
 			System.out.println("Enter From Account Number :");
 			fromAccount.getAccountNumber();
 			System.out.println("Enter To Account Number :");
 			toAccount.getAccountNumber();
-			if (balance < 0) {
+			if (fromAccount.getBalance() < 0) {
 				System.out.println("Invalid Amount");
 				return 1;
 			}
-			balance = balance + amount;
-			 System.out.println("deposit status");
-				System.out.println("Your Money has been successfully depsited");
+			amount = fromAccount.getBalance() + toAccount.getBalance();
+			 System.out.println("Transfer status");
+				System.out.println("Your Money has been successfully transferred");
 			return 0;
 	
 	}
